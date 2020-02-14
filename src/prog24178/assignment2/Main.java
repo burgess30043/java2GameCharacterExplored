@@ -7,7 +7,7 @@ package prog24178.assignment2;
 
 /**
  *
- * @author Admin
+ * @author Burgess+Khang
  */
 public class Main {
 
