@@ -9,7 +9,12 @@ package prog24178.assignment2;
  *
  * @author Khang Do
  */
-public class PlayableGameCharacter extends GameCharacter{
+public class PlayableGameCharacter extends GameCharacter 
+        implements BattleStats{
+    private int attackPower;
+    private int defensePower;
+    private int hitPoints;
+    private int speed;
     
     public PlayableGameCharacter(){
         super();
@@ -17,6 +22,11 @@ public class PlayableGameCharacter extends GameCharacter{
         
     @Override
     public void speak(){
+        
+    }
+    
+    @Override
+    public void attack(GameCharacter g){
         
     }
 }

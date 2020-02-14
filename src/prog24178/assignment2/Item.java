@@ -6,7 +6,7 @@
 package prog24178.assignment2;
 
 /**
- *
+ * Creates Items for Game Characters
  * @author Khang Do
  */
 public class Item {
