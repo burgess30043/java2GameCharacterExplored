@@ -107,7 +107,12 @@ public abstract class GameCharacter {
      * @param phrases the phrases to set
      */
     public void setPhrases(ArrayList<String> phrases) {
-        this.phrases = phrases;
+        if ((phrases == null) || (phrases.isEmpty())) {
+            throw new IllegalArgumentException("Error: value cannot be "
+                    + "the null object or the empty String");
+        } else {
+            this.phrases = phrases;
+        }        
     }
 
     /**
@@ -134,7 +139,7 @@ public abstract class GameCharacter {
         return temp;
     }
 
-    public abstract void speak();
+    public abstract String speak();
 
     public double gainMoney(double m) throws IllegalArgumentException {
         if (m > 0) {
@@ -177,5 +182,4 @@ public abstract class GameCharacter {
         ("Error: The item is in your invetory.");
         } else inventory.remove(i);
     }
-
 }
