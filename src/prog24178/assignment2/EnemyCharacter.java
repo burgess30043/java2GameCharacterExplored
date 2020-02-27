@@ -20,6 +20,8 @@ public class EnemyCharacter extends NonPlayableGameCharacter
         super();
     }
     
+    
+    
     @Override
     public String speak(){
         String temp = String.format
@@ -29,8 +31,24 @@ public class EnemyCharacter extends NonPlayableGameCharacter
     }
     
     @Override
-    public void attack(GameCharacter g){
-        
+    public void attack(GameCharacter g)throws IllegalArgumentException{
+        if (g instanceof PlayableGameCharacter) {
+                if (hitPoints > 0 && 
+                        ((PlayableGameCharacter)g).getHitPoints() > 0) {
+                    if (attackPower > 
+                            ((PlayableGameCharacter)g).getDefensePower()) {
+                        ((PlayableGameCharacter)g).setHitPoints(attackPower - 
+                                ((PlayableGameCharacter)g).getDefensePower());
+                        System.out.printf("%s attacks %s, "
+                                + "%s loses %d hit points", getName(), 
+                                g.getName(), g.getName(), (attackPower - 
+                                ((PlayableGameCharacter)g).getDefensePower()));
+                    } else System.out.printf("%s attacks %s, "
+                                + "%s loses 0 hit points", getName(), 
+                                g.getName(), g.getName());
+                }
+            } else throw new 
+        IllegalArgumentException("Error: The character is unable to attack.");
     }
     
     /**
