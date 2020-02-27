@@ -42,7 +42,19 @@ public class PlayableGameCharacter extends GameCharacter
 
     @Override
     public void attack(GameCharacter g) {
-
+        boolean loopCheck = true;
+        while(loopCheck){
+            if (g instanceof EnemyCharacter){
+                g = (EnemyCharacter)g;
+                if (attackPower > 0){
+                    
+                }
+            } else if(g instanceof PlayableGameCharacter){
+                g = (PlayableGameCharacter)g;
+                
+            } else loopCheck = false;
+            
+        }
     }
 
     /**
