@@ -19,6 +19,7 @@ public class Item {
     }
     
     public Item(String name, String description, int value){
+        setName(name);
         
     }
 
@@ -33,7 +34,12 @@ public class Item {
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name;
+        if ((name == null) || (name.trim().isEmpty())) {
+            throw new IllegalArgumentException("Error: value cannot be "
+                    + "the null object or the empty String");
+        } else {
+            this.name = name;
+        }
     }
 
     /**
@@ -47,7 +53,12 @@ public class Item {
      * @param description the description to set
      */
     public void setDescription(String description) {
-        this.description = description;
+        if ((description == null) || (description.trim().isEmpty())) {
+            throw new IllegalArgumentException("Error: value cannot be "
+                    + "the null object or the empty String");
+        } else {
+            this.description = description;
+        }        
     }
 
     /**

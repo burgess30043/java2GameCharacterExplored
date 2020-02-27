@@ -5,17 +5,20 @@
  */
 package prog24178.assignment2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Khang Do
  */
 public abstract class GameCharacter {
+
     private String name;
     private boolean controllable;
     private double money;
     private Direction directionFacing;
-    private String[] phrases;
-    private Item[] inventory;
+    private ArrayList<String> phrases;
+    private ArrayList<Item> inventory;
 
     /**
      * @return the name
@@ -27,8 +30,13 @@ public abstract class GameCharacter {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws IllegalArgumentException {
+        if ((name == null) || (name.trim().isEmpty())) {
+            throw new IllegalArgumentException("Error: value cannot be "
+                    + "the null object or the empty String");
+        } else {
+            this.name = name;
+        }
     }
 
     /**
@@ -55,8 +63,13 @@ public abstract class GameCharacter {
     /**
      * @param money the money to set
      */
-    public void setMoney(double money) {
-        this.money = money;
+    public void setMoney(double money) throws IllegalArgumentException {
+        if (money < 0) {
+            throw new IllegalArgumentException("Error: the value can not"
+                    + "below 0");
+        } else {
+            this.money = money;
+        }
     }
 
     /**
@@ -70,71 +83,99 @@ public abstract class GameCharacter {
      * @param directionFacing the directionFacing to set
      */
     public void setDirectionFacing(Direction directionFacing) {
-        this.directionFacing = directionFacing;
+        boolean checkDirection = false;
+        Direction[] dir = Direction.values();
+        for (Direction dirCheck : dir) {
+            if (dirCheck.equals(directionFacing)) {
+                checkDirection = true;
+            }
+        }
+        if (checkDirection) {
+            this.directionFacing = directionFacing;
+        } else throw new IllegalArgumentException
+        ("Error: The direction must be left, right or forward");
     }
 
     /**
      * @return the phrases
      */
-    public String[] getPhrases() {
+    public ArrayList<String> getPhrases() {
         return phrases;
     }
 
     /**
      * @param phrases the phrases to set
      */
-    public void setPhrases(String[] phrases) {
+    public void setPhrases(ArrayList<String> phrases) {
         this.phrases = phrases;
     }
 
     /**
      * @return the inventory
      */
-    public Item[] getInventory() {
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 
     /**
      * @param inventory the inventory to set
      */
-    public void setInventory(Item[] inventory) {
+    public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
     }
-    
-    public Direction turnLeft(){
+
+    public Direction turnLeft() {
         Direction temp = Direction.LEFT;
         return temp;
     }
-    
-    public Direction turnRight(){
+
+    public Direction turnRight() {
         Direction temp = Direction.RIGHT;
         return temp;
     }
-    
+
     public abstract void speak();
-    
-    public double gainMoney(double m){
-        return m;
+
+    public double gainMoney(double m) throws IllegalArgumentException {
+        if (m > 0) {
+            money += m;
+        } else {
+            throw new 
+        IllegalArgumentException("Error: The amount of money must be positive");
+        }
+        return money;
     }
-    
-    public double loseMoney(double m){
-        return m;
+
+    public double loseMoney(double m) {
+        if (m > 0) {
+            money -= m;
+        } else {
+            throw new 
+        IllegalArgumentException("Error: The amount of money must be positive");
+        }
+        return money;
     }
-    
-    public void gainItem(Item i){
-        
+
+    public void gainItem(Item i) {
+        inventory.add(i);
     }
-    public void loseItem(Item i){
-        
+
+    public void loseItem(Item i) throws IllegalArgumentException{
+        if (inventory.indexOf(i) == -1){
+            throw new IllegalArgumentException
+        ("Error: The item is in your invetory.");
+        } else inventory.remove(i);
     }
-    
-    public void buyItem(Item i){
-        
+
+    public void buyItem(Item i) {
+        inventory.add(i);
     }
-    
-    public void sellItem(Item i){
-        
+
+    public void sellItem(Item i) {
+        if (inventory.indexOf(i) == -1){
+            throw new IllegalArgumentException
+        ("Error: The item is in your invetory.");
+        } else inventory.remove(i);
     }
-    
-    
+
 }
