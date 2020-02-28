@@ -36,7 +36,7 @@ public class PlayableGameCharacter extends GameCharacter
     @Override
     public String speak() {
         String temp = String.format("Hi, my name is %s. "
-                + "I'm a game character", super.getName());
+                + "I'm a game character.%n", super.getName());
         return temp;
     }
 
@@ -48,11 +48,11 @@ public class PlayableGameCharacter extends GameCharacter
                         ((EnemyCharacter)g).setHitPoints(attackPower - 
                                 ((EnemyCharacter)g).getDefensePower());
                         System.out.printf("%s attacks %s, "
-                                + "%s loses %d hit points", getName(), 
+                                + "%s loses %d hit points%n", getName(), 
                                 g.getName(), g.getName(), (attackPower - 
                                 ((EnemyCharacter)g).getDefensePower()));
                     } else System.out.printf("%s attacks %s, "
-                                + "%s loses 0 hit points", getName(), 
+                                + "%s loses 0 hit points%n", getName(), 
                                 g.getName(), g.getName());
                 }
             } else if (g instanceof PlayableGameCharacter) {
@@ -63,11 +63,11 @@ public class PlayableGameCharacter extends GameCharacter
                         ((PlayableGameCharacter)g).setHitPoints(attackPower - 
                                 ((PlayableGameCharacter)g).getDefensePower());
                         System.out.printf("%s attacks %s, "
-                                + "%s loses %d hit points", getName(), 
+                                + "%s loses %d hit points%n", getName(), 
                                 g.getName(), g.getName(), (attackPower - 
                                 ((PlayableGameCharacter)g).getDefensePower()));
                     } else System.out.printf("%s attacks %s, "
-                                + "%s loses 0 hit points", getName(), 
+                                + "%s loses 0 hit points%n", getName(), 
                                 g.getName(), g.getName());
                 }
             } else throw new 
@@ -147,5 +147,18 @@ public class PlayableGameCharacter extends GameCharacter
         } else {
             throw new IllegalArgumentException("Error: value must be positive");
         }
+    }
+    
+    @Override
+    public String toString(){
+        String temp = "";
+        temp += String.format("My name is %s.%n", super.getName());
+        temp += String.format("My available money is %4.2f.%n", super.getMoney());
+        temp += String.format("My battle stat:%n", super.getMoney());
+        temp += String.format("Attack power: %d.%n", attackPower);
+        temp += String.format("Defense power: %d.%n", defensePower);
+        temp += String.format("Hit points: %d.%n", hitPoints);
+        temp += String.format("Speed: %d.%n", speed);
+        return temp;
     }
 }
