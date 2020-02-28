@@ -631,7 +631,7 @@ public class Main {
         int chance = ran.nextInt(10);
         int getMoney = ran.nextInt(101)+100;
         int loseMoney = ran.nextInt(100)+1;
-        switch(8){
+        switch(chance){
             case 0:
                 villagerHi();
                 break;
