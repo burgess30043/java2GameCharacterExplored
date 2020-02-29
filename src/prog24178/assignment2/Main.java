@@ -10,8 +10,9 @@ import java.util.Random;
 import java.util.ArrayList;
 import errorCheck.JavaErrorCheck;
 /**
- *
- * @author Admin
+ * Creates a game for Game Character Class
+ * @author Burgess
+ * @modify KhangDo
  */
 public class Main {
 
@@ -77,17 +78,17 @@ public class Main {
             System.out.println("Please enter your DEF (Defense needs to be "
                     +"between 10 to 20 > ");
             DefenseP=jec.checkIntTenTwenty(input);
-            System.out.println("Your STR is "+DefenseP);
+            System.out.println("Your DEF is "+DefenseP);
             
             System.out.println("Please enter your HP (Health points needs to "
                     +"be between 100 to 200 > ");
             HitP=jec.checkIntOneHtoTwoH(input);
-            System.out.println("Your STR is "+HitP);
+            System.out.println("Your HP is "+HitP);
             
             System.out.println("Please enter your SP (Speed needs to be "
                     +"between 1 to 5 > ");
             speed=jec.checkIntSpeed(input);
-            System.out.println("Your STR is "+speed);
+            System.out.println("Your SP is "+speed);
             
         }
         
@@ -108,7 +109,7 @@ public class Main {
              
         System.out.println("Hello again, my name is Burgess! In order to "
             +"welcome you, I want to give you some treasures and money "
-            +"help you bring pease to our town!");
+            +"help you bring peace to our town!");
         System.out.println("You will complete the mission in two ways, one "
             +"is you got $1000 dollars and submit it to me to help us. \nThe "
             +"other way is you have no money and then you will have to leave "

@@ -17,8 +17,8 @@ public abstract class GameCharacter {
     private boolean controllable;
     private double money;
     private Direction directionFacing;
-    private ArrayList<String> phrases;
-    private ArrayList<Item> inventory;
+    private ArrayList<String> phrases = new ArrayList();
+    private ArrayList<Item> inventory = new ArrayList();
 
     /**
      * @return the name
