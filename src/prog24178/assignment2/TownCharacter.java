@@ -10,12 +10,20 @@ package prog24178.assignment2;
  * @author Khang Do
  */
 public class TownCharacter extends NonPlayableGameCharacter {
+    
     public TownCharacter(){
         super();
     }
     
+    public TownCharacter(String name){
+        super.setName(name);
+    }
+    
     @Override
-    public void speak(){
-        
+    public String speak(){
+        String temp = String.format
+        ("Hi, I'm %s. I'm a non-playable character. "
+                + "I live in this town.", super.getName());
+        return temp;
     }
 }

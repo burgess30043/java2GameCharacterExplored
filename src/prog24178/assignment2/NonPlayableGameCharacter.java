@@ -10,5 +10,5 @@ package prog24178.assignment2;
  * @author Khang Do
  */
 public abstract class NonPlayableGameCharacter extends GameCharacter{
-    
+    private final boolean controllable = false;
 }
