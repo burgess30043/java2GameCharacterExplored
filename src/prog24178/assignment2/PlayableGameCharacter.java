@@ -21,6 +21,10 @@ public class PlayableGameCharacter extends GameCharacter
         super();
         setControllable(true);
     }
+    
+    public PlayableGameCharacter(String name){
+        super.setName(name);
+    }
 
     public PlayableGameCharacter
         (String name, double m, int atk, int def, int hit, int speed) {

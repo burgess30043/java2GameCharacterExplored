@@ -20,7 +20,10 @@ public class EnemyCharacter extends NonPlayableGameCharacter
         super();
     }
     
-    
+    public EnemyCharacter(String name, double money){
+        super.setName(name);
+        super.setMoney(money);
+    }
     
     @Override
     public String speak(){

@@ -12,15 +12,16 @@ package prog24178.assignment2;
 public enum Direction {
     LEFT("left"),
     RIGHT("right"),
-    FORWARD("forward");
+    NORTH("north"),
+    SOUTH("south");
     
-    public String displayName;
+    public String directionName;
     
-    public String getDisplayName(){
-        return displayName;
+    public String getDirectionName(){
+        return directionName;
     }
     
     private Direction(String name){
-        displayName = name;
+        directionName = name;
     }
 }
