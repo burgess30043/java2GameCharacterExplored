@@ -13,6 +13,7 @@ import errorCheck.JavaErrorCheck;
  * Creates a game for Game Character Class
  * @author Burgess
  * @modify KhangDo
+ * 123
  */
 public class Main {
 
