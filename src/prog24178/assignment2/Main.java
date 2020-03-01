@@ -27,10 +27,6 @@ public class Main {
         missionStart(mkCharacter());
     }
     
-    
-    
-    
-    
     /**
      * greeting static method is to introduce the kingdom for the user
      */
@@ -73,7 +69,7 @@ public class Main {
         
         System.out.println("Do you want to set up your character's ability "
                 +"value? (Y for yes, N for no) > ");
-        vaildForAV = jec.checkYorN(input);//enter yes or no
+        vaildForAV = jec.checkYorN(input);
         
         int attackP=0, DefenseP=0, HitP=0, speed=0;
         //Four character ability values
@@ -112,8 +108,7 @@ public class Main {
         myCharacter.setDefensePower(DefenseP);//set the defense power
         myCharacter.setHitPoints(HitP);//set the HP
         myCharacter.setSpeed(speed);//set the speed
-        
-        
+                
         String s = "";
         s+=myCharacter.getName()+"'s STR is "+myCharacter.getAttackPower()
             +".\nDEF is "+myCharacter.getDefensePower()+".\nHP is "
@@ -124,14 +119,14 @@ public class Main {
              +"---------------------------------------------------"
             +"---------------------------------------------------");
              
-        System.out.println("Hello again, my name is Burgess! In order to "
-            +"welcome you, I want to give you some treasures and money "
-            +"help you bring peace to our town!");
-        System.out.println("You will complete the mission in two ways, one "
-            +"is you got $1000 dollars and submit it to me to help us. \nThe "
-            +"other way is you have no money and then you will have to leave "
+        System.out.println("Welcome to Burgess kingdom! Here is my welcome "
+            +"gift, you will receive some treasures and money that "
+            +"you can use to start your adventure in our town!");
+        System.out.println("You can finish the game in two ways, one "
+            +"is that you get $1000 and submit it to me. \nThe "
+            +"other way is that you lose all your money and you have to leave "
             +"my town. \nGood luck! My friend.");
-        System.out.println("\nDing-ding! You got something in your backpeck!");
+        System.out.println("\nDing-ding! You got something in your backpack!");
         //explain the rules of the entire mission
         for (int i = 0; i < 3; i++) {
             myCharacter.gainItem(
@@ -199,7 +194,7 @@ public class Main {
                 steal = stealItem(newVillager
                         ,newVillager.getInventory().get(0));
                 if(steal==true){
-                System.out.println("Your steal skill imporove!");
+                System.out.println("Your steal skill improves!");
                 }
                 else System.out.println("Your guilty +10.");
             }
@@ -238,7 +233,7 @@ public class Main {
                 break;
             case 1:
                 System.out.println("You fail!");
-                System.out.println("Your run away and feel very guilty.");
+                System.out.println("You run away and feel very guilty.");
                 result = false;
                 break;
         }
@@ -309,23 +304,23 @@ public class Main {
         while(!finishCombat){
             
             if(enemyLife<=1){
-                System.out.println("You win!");
-                System.out.println("You got $"+e.getMoney()+" from "
-                    +e.getName()+".");
+                result += "You win!\n";
+                result += String.format("You got $%4.0f from %s.\n", 
+                        e.getMoney(), e.getName());
                 MoneyChange = p.getMoney()+e.getMoney();
                 p.setMoney(MoneyChange);
                 finishCombat=true;
                 
             }
             else if(myLife<=1){
-                System.out.println("You lose!");
+                result += "You lose!\n";
                 if(p.getMoney()>=e.getMoney()){
-                    System.out.println("You lost half of your money!");
+                    result += "You lost half of your money!\n";
                     MoneyChange = p.getMoney()*0.5;
                     p.setMoney(MoneyChange);
                 }
                 else{
-                    System.out.println("You lost all your money!");
+                    result += "You lost all your money!\n";
                     p.setMoney(0);
                 }
                 finishCombat=true;
@@ -483,7 +478,7 @@ public class Main {
             
         }
         
-        return "yes!";
+        return result;
     }
     
     /**
@@ -523,7 +518,7 @@ public class Main {
         
         System.out.println("I have those stuff...\n"
                 +businessman.getInventory().size()+" treasures. What do you "
-                +"need? Each one is ten gold coins!");
+                +"need? Each one is $10!");
         
         System.out.println("1. Buy one treasure.(Enter 1)\n2. Sell one "
                 +"treasure.(Enter 2)\n3. Check your treasures.(Enter 3)\n"
@@ -562,7 +557,7 @@ public class Main {
                         p.sellItem(p.getInventory().get(0));
                         double getMoney = p.getMoney()+10;
                         p.setMoney(getMoney);
-                        System.out.println("The rest of your gold coins: $"
+                        System.out.println("The rest of your gold: $"
                                 +p.getMoney());
                     }
                     else{
@@ -573,7 +568,7 @@ public class Main {
                     if(p.getInventory().size()>0){
                         System.out.println("I still have "
                                 +p.getInventory().size()+" treasures.");
-                        System.out.println("The label on th top said..."
+                        System.out.println("The label on the top said..."
                             +p.getInventory().get(0).getName());
                         System.out.println("The description is..."
                             +p.getInventory().get(0).getDescription());
@@ -589,6 +584,10 @@ public class Main {
                     break;
             }
             input.nextLine();
+            System.out.println("-----------------------------------"
+                    + "----------------"
+            +"---------------------------------------------------"
+            +"---------------------------------------------------");
             System.out.println("Still need anything?");
             System.out.println("1. Buy one treasure.(Enter 1)\n2. Sell one "
                 +"treasure.(Enter 2)\n3. Check your treasures.(Enter 3)\n"
@@ -596,7 +595,7 @@ public class Main {
             choice = jec.checkIntOneToFour(input);
             
         }
-        System.out.println("Bye! Welcome to come again!");
+        System.out.println("Bye! See you again!");
     }
     
     /**
@@ -613,7 +612,8 @@ public class Main {
         Direction dR = p.turnRight();
         System.out.println("You bump into a intersection, what do you want to "
                 +"do?");
-        System.out.println("1. Turn Left.(Enter 1)\n2. Turn Right.(Enter 2)\n>");
+        System.out.println("1. Turn Left.(Enter 1)\n2. Turn Right."
+                + "(Enter 2)\n>");
         int choice = jec.checkIntOneTwo(input);
         
         if(choice==1){
@@ -642,8 +642,8 @@ public class Main {
             System.exit(0);
         }
         else{
-            System.out.println("Your money is not enough!\nYour gold coins "
-                    +"are : $"+p.getMoney());
+            System.out.println("Your money is not enough!\nYour gold "
+                    +"is : $"+p.getMoney());
             
         }
         
@@ -675,7 +675,10 @@ public class Main {
                 +"\n3. Start adventures now.(Enter 3)\n4. Submit my money. "
                 +"(Enter 4)\n5. Leave this town(Enter 5) > ");
             int choice = jec.checkIntOneToFive(input);
-        
+            System.out.println("-------------------------------------"
+                    + "--------------"
+            +"---------------------------------------------------"
+            +"---------------------------------------------------");
             switch(choice){
                 case 1://shooping
                     sellAndBuy(p);
@@ -707,7 +710,7 @@ public class Main {
                     break;
                 case 5://just leave the towm without any perality
                     System.out.println("King Burgess: I am so sorry you have "
-                        +"to leave my twon, wish you the best!");
+                        +"to leave my town. Wish you all the best!");
                     System.exit(0);
                     break;
             }
@@ -783,9 +786,11 @@ public class Main {
                 break;
             case 8://battle
                 battle(p,mkEnemy());
+                System.out.println(battle(p, mkEnemy()));
                 break;
             case 9://battle
                 battle(p,mkEnemy());
+                System.out.println(battle(p, mkEnemy()));
                 break;
         }
         
