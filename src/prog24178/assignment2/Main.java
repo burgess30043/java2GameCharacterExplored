@@ -5,27 +5,35 @@
  */
 package prog24178.assignment2;
 
+/**
+ * Test the GameCharacter Class
+ * @author Burgess
+ * @modify KhangDo
+ */
 import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
 import errorCheck.JavaErrorCheck;
-/**
- * Creates a game for Game Character Class
- * @author Burgess
- * @modify KhangDo
- * 123
- */
+
 public class Main {
 
     /**
+     * Main method to call the whole method, first is the greeting method,
+     * second is the missionStart method to begin the whole mission
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         greeting();
         missionStart(mkCharacter());
     }
     
+    
+    
+    
+    
+    /**
+     * greeting static method is to introduce the kingdom for the user
+     */
     public static void greeting() {
         
         String s = "";
@@ -39,6 +47,10 @@ public class Main {
             +"---------------------------------------------------");
     }
     
+    /**
+     * mkCharacter method is to create a new character
+     * @return PlayableGameCharacter, a new created character by user
+     */
     public static PlayableGameCharacter mkCharacter(){
         
         JavaErrorCheck jec = new JavaErrorCheck();
@@ -50,21 +62,24 @@ public class Main {
         do{
             System.out.println("Now, Let's create you own character! Please "+
                 "enter your name > ");
-            myName = jec.checkEnterOfString(input);
+            myName = jec.checkEnterOfString(input);//enter the name
             System.out.println("Your name is: "+myName+". enter Y/N to confirm."
                     + " (Y for yes, N for enter again) > ");
-            vaildForMc = jec.checkYorN(input);
+            vaildForMc = jec.checkYorN(input);//enter yes or no
             
         }while(vaildForMc.equals("n")||vaildForMc.equals("N"));
         PlayableGameCharacter myCharacter = new PlayableGameCharacter(myName);
+        //if the user enter no, create a random character for the user
         
         System.out.println("Do you want to set up your character's ability "
                 +"value? (Y for yes, N for no) > ");
-        vaildForAV = jec.checkYorN(input);
+        vaildForAV = jec.checkYorN(input);//enter yes or no
         
         int attackP=0, DefenseP=0, HitP=0, speed=0;
+        //Four character ability values
         
         if(vaildForAV.equals("n")||vaildForAV.equals("N")){
+        //random value if the user does not want to enter 
             attackP = ran.nextInt(11)+10;
             DefenseP = ran.nextInt(11)+10;
             HitP = ran.nextInt(101)+100;
@@ -93,10 +108,11 @@ public class Main {
             
         }
         
-        myCharacter.setAttackPower(attackP);
-        myCharacter.setDefensePower(DefenseP);
-        myCharacter.setHitPoints(HitP);
-        myCharacter.setSpeed(speed);
+        myCharacter.setAttackPower(attackP);//set the attack power
+        myCharacter.setDefensePower(DefenseP);//set the defense power
+        myCharacter.setHitPoints(HitP);//set the HP
+        myCharacter.setSpeed(speed);//set the speed
+        
         
         String s = "";
         s+=myCharacter.getName()+"'s STR is "+myCharacter.getAttackPower()
@@ -116,15 +132,15 @@ public class Main {
             +"other way is you have no money and then you will have to leave "
             +"my town. \nGood luck! My friend.");
         System.out.println("\nDing-ding! You got something in your backpeck!");
-        
+        //explain the rules of the entire mission
         for (int i = 0; i < 3; i++) {
             myCharacter.gainItem(
                     new Item("Treasures","King Burgess' treasures!",10));
         }
-        
+        //the game will give the new character 3 treasures for the begining
         myCharacter.gainMoney(100);
-        
-        int facing = ran.nextInt(2);
+        //the game will give the new character $100 for the begining
+        int facing = ran.nextInt(2);//randomly the face direction
         switch(facing){
             case 0:
                 myCharacter.setDirectionFacing(Direction.NORTH);
@@ -143,12 +159,18 @@ public class Main {
         
     }
     
+    /**
+     * A static method for randomly choose a villager who will say hi to the user
+     * In this case, user has 50% chance for the idea that if the user want
+     * to steal the item from those kind people
+     */
     public static void villagerHi(){
         
         JavaErrorCheck jec = new JavaErrorCheck();
         Random ran = new Random();
         Scanner input = new Scanner(System.in);
         
+        //Ten villager's random name
         String villagerName [] = {"Amelia","Olivia","Isla","Emily","Ava"
                 ,"Oliver","Jack","Harry","Charlie","Thomas"};
         int nameIndex = ran.nextInt(10);
@@ -161,6 +183,7 @@ public class Main {
         newVillager.gainItem(new Item("Someone's stuff", "It is not belong to you"
                                 ,1));
         
+        //Stealing thing from the villager
         int chance = ran.nextInt(2);
         String YorN = "";
         boolean steal;
@@ -182,8 +205,17 @@ public class Main {
         }   
     }
     
+    /**
+     * stealItem static method is to see if the user successfully steal the 
+     * item or not
+     * @param g, GameCharacter is to see if the character is belong to the 
+     *              TownCharacter who you want to steal item from
+     * @param i, it is the item which is stolen by the user
+     * @return Boolean, true or false if the user success or fail
+     */
     public static boolean stealItem(GameCharacter g, Item i){
         Random ran = new Random();
+        
         
         TownCharacter t = new TownCharacter("Nobody");
         if(g instanceof TownCharacter){
@@ -213,8 +245,14 @@ public class Main {
         return result;
     }
     
+    /**
+     * mkEnemy static method is the method to make enemy character
+     * @return EnemyCharacter, randomly make enemies
+     */
     public static EnemyCharacter mkEnemy(){
         
+        //Random name for the enemy, the enemy will have to name title in 
+        //order to distingish he or she is a bad person
         Random ran = new Random();      
         String enemyName [] = {"Ninga George","Robber Oscar","Pitate James"
                 ,"Brigand William","Brigand Isabella","Ninga Jessica"
@@ -222,6 +260,8 @@ public class Main {
         int nameIndex = ran.nextInt(10);
         int money = ran.nextInt(21)+10;
         
+        //enemy will have money and if the user win the battle, the user
+        //will have that money
         EnemyCharacter newEnemy = new EnemyCharacter(enemyName[nameIndex]
                 ,money);
         
@@ -229,6 +269,13 @@ public class Main {
         
     }
     
+    /**
+     * battle static method is to fight with a random enemy if the user bump 
+     * into a enemy
+     * @param p, PlayableGameCharacter p is the user
+     * @param e, EnemyCharacter e is the enemy the user fight with
+     * @return String, it is about who win this battle
+     */
     public static String battle(PlayableGameCharacter p, EnemyCharacter e){
         
         Random ran = new Random();
@@ -247,6 +294,9 @@ public class Main {
             +"------------------------------------------------------------"
             +"-----------------------------------------------------------");
         
+        //The system will check who attack first and whether they successfully
+        //defense from the attack or not. Anyone got only 1 for the HP, the 
+        //other win the battle
         int defChance = 0;
         double damage = 0;
         double enemyLife = e.HITPOINTS;
@@ -282,7 +332,7 @@ public class Main {
             }
             else{
                 
-                if(p.getSpeed() >= e.SPEED)
+                if(p.getSpeed() >= e.SPEED)//check who attack first
                 {
                     System.out.println(p.getName()+" is faster, so you "
                             +"attack him!");
@@ -418,11 +468,15 @@ public class Main {
             
         }
         
-        
-        
         return "yes!";
     }
     
+    /**
+     * damageCount static method is to count the damage for the repeating 
+     * function in the battle method
+     * @param d, double d is to check the damage that the battle make
+     * @return Double, for the battle method
+     */
     public static double damageCount(double d){
         if(d<=0){
             System.out.println("Your defense is too high, the enemy can only "
@@ -431,7 +485,11 @@ public class Main {
         }
         return d;
     }
-        
+
+    /**
+     * sellAndBuy static method is for the user to shop
+     * @param p ,PlayableGameCharacter p is the user 
+     */    
     public static void sellAndBuy(PlayableGameCharacter p){
         
         Scanner input = new Scanner(System.in);
@@ -439,8 +497,10 @@ public class Main {
         
         ArrayList<Item> items = new ArrayList();
         TownCharacter businessman = new TownCharacter("King Burgess");
+        //create a new businessman
         System.out.println("Hi, my friend! I am "+businessman.getName());
-        
+        //businessman will have 5 items for sell and everytime the use come,
+        //the item will renew again 
         for (int i = 0; i < 5; i++) {
            items.add(new Item("Treasures","King Burgess' treasures!",10));
         }
@@ -458,7 +518,7 @@ public class Main {
         while(choice!=4){
             
             switch(choice){
-                case 1:
+                case 1://buy the item, only five for the user
                     if(p.getMoney()>10){
                         if(businessman.getInventory().size()>0){
                             p.buyItem(businessman.getInventory().get(0));
@@ -481,7 +541,8 @@ public class Main {
                         System.out.println("You have no enough gold coins!");
                     }
                     break;
-                case 2:
+                case 2://sell items from the user, but the user can not buy 
+                            //this item back
                     if(p.getInventory().size()>0){
                         p.sellItem(p.getInventory().get(0));
                         double getMoney = p.getMoney()+10;
@@ -493,7 +554,7 @@ public class Main {
                         System.out.println("You have nothing to sell!");
                     }
                     break;
-                case 3:
+                case 3://to check how many item the user has and the detail
                     if(p.getInventory().size()>0){
                         System.out.println("I still have "
                                 +p.getInventory().size()+" treasures.");
@@ -507,10 +568,9 @@ public class Main {
                     else{
                         System.out.println("You have no items now.");
                     }
-                    
 
                     break;
-                case 4:
+                case 4://leave the store.
                     break;
             }
             input.nextLine();
@@ -524,6 +584,11 @@ public class Main {
         System.out.println("Bye! Welcome to come again!");
     }
     
+    /**
+     * intersection static method is the user walk around but hit the 
+     * intersection, the user need to decide to turn right od left
+     * @param p, PlayableGameCharacter p is the user's character
+     */
     public static void intersection(PlayableGameCharacter p){
         
         JavaErrorCheck jec = new JavaErrorCheck(); 
@@ -545,6 +610,11 @@ public class Main {
         
     }
     
+    /**
+     * submitMoney static method is the only way to win the game which is to 
+     * earn $1000 and submit them to the kingdom
+     * @param p, PlayableGameCharacter p is the user's character 
+     */
     public static void submitMoney(PlayableGameCharacter p){
         
         double restMoney = 0;
@@ -564,6 +634,12 @@ public class Main {
         
     }
     
+    /**
+     * missionStart static will have ten different issues for the user to do
+     * the adventures
+     * @param g, GameCharacter g is to make sure the user's character is doing 
+     * the mission
+     */
     public static void missionStart(GameCharacter g){
         
         JavaErrorCheck jec = new JavaErrorCheck();
@@ -585,35 +661,35 @@ public class Main {
             int choice = jec.checkIntOneToFive(input);
         
             switch(choice){
-                case 1:
+                case 1://shooping
                     sellAndBuy(p);
                     System.out.println("------------------------------------"
                         +"--------------------------------------------------"
                         +"--------------------------------------------------"
                         +"-----------------");
                     break;
-                case 2:
+                case 2://check personal information
                     System.out.println(p);
                     System.out.println("------------------------------------"
                         +"--------------------------------------------------"
                         +"--------------------------------------------------"
                         +"-----------------");
                     break;
-                case 3:
+                case 3://do the advantures
                     adventures(p);
                     System.out.println("------------------------------------"
                         +"--------------------------------------------------"
                         +"--------------------------------------------------"
                         +"-----------------");
                     break;
-                case 4:
+                case 4://submit all the money and try to win the game
                     submitMoney(p);
                     System.out.println("------------------------------------"
                         +"--------------------------------------------------"
                         +"--------------------------------------------------"
                         +"-----------------");
                     break;
-                case 5:
+                case 5://just leave the towm without any perality
                     System.out.println("King Burgess: I am so sorry you have "
                         +"to leave my twon, wish you the best!");
                     System.exit(0);
@@ -625,36 +701,44 @@ public class Main {
         
     }
     
+    /**
+     * adventures static method is for the ten different issues that if the 
+     * user choose to go out and do some mission, the goal is just to earn the 
+     * $1000 dollars
+     * @param p,, PlayableGameCharacter p is the user's character 
+     */
     public static void adventures(PlayableGameCharacter p){
         
         JavaErrorCheck jec = new JavaErrorCheck();
         Random ran = new Random();
         Scanner input = new Scanner(System.in);
         
+        //Ten random issues for the user
         int chance = ran.nextInt(10);
         int getMoney = ran.nextInt(101)+100;
         int loseMoney = ran.nextInt(100)+1;
         switch(chance){
-            case 0:
+            case 0://bump into a villager and have 50% chance to steal
                 villagerHi();
                 break;
-            case 1:
+            case 1://bump into a villager and have 50% chance to steal
                 villagerHi();
                 break;
-            case 2:
+            case 2://bump into a villager and have 50% chance to steal
                 villagerHi();
                 break; 
-            case 3:
+            case 3://find $?? money
                 System.out.println("You find something behind the rock...");
                 System.out.println("You got $"+getMoney);
                 p.gainMoney(getMoney);
                 break;    
-            case 4:
+            case 4://find treasures
                 System.out.println("You find something behind the rock...");
                 System.out.println("You got a treasure!");
                 p.gainItem(new Item());
                 break;    
-            case 5:
+            case 5://lose $?? money, is lost money is greater that your money
+                    //then you will lose all the money
                 System.out.println("Oh no! You find out that you just lost "
                         +"something...");
                 if(p.getMoney()>=loseMoney){
@@ -666,7 +750,7 @@ public class Main {
                     p.setMoney(0);
                 }
                 break; 
-            case 6:
+            case 6://lose item, if you have 0 item, you will lose nothing
                 System.out.println("Oh no! You find out that you just lost "
                     +"something...");
                 if(p.getInventory().size()>0){
@@ -677,14 +761,14 @@ public class Main {
                     System.out.println("You lost all of your items!");
                 }
                 break;
-            case 7:
+            case 7://bump into a intersection and need to choose a way to turn 
                 System.out.println("You walk and walk... Suddenly!!?");
                 intersection(p);
                 break;
-            case 8:
+            case 8://battle
                 battle(p,mkEnemy());
                 break;
-            case 9:
+            case 9://battle
                 battle(p,mkEnemy());
                 break;
         }
