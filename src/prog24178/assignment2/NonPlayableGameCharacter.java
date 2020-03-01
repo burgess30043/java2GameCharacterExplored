@@ -6,9 +6,26 @@
 package prog24178.assignment2;
 
 /**
- *
+ * Creates a non-playable game character with the default false of controllable
+ * data member
  * @author Khang Do
  */
 public abstract class NonPlayableGameCharacter extends GameCharacter{
-    private final boolean controllable = false;
+    private boolean controllable = false; //Default un-controllable
+
+    /**
+     * Gets the controllable value of game character
+     * @return the controllable of game character
+     */
+    public boolean isControllable() {
+        return controllable;
+    }
+
+    /**
+     * Sets the controllable value of game character
+     * @param controllable the controllable to set
+     */
+    public void setControllable(boolean controllable) {
+        this.controllable = controllable;
+    }
 }

@@ -6,8 +6,8 @@
 package prog24178.assignment2;
 
 /**
- *
- * @author Admin
+ * Direction of game character
+ * @author Khang Do
  */
 public enum Direction {
     LEFT("left"),
@@ -15,8 +15,15 @@ public enum Direction {
     NORTH("north"),
     SOUTH("south");
     
+    /**
+     * direction name
+     */
     public String directionName;
     
+    /**
+     * Gets direction name
+     * @return direction
+     */
     public String getDirectionName(){
         return directionName;
     }

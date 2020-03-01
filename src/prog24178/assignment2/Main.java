@@ -8,7 +8,7 @@ package prog24178.assignment2;
 /**
  * Test the GameCharacter Class
  * @author Burgess
- * @modify KhangDo
+ * @modified KhangDo
  */
 import java.util.Scanner;
 import java.util.Random;
@@ -160,7 +160,8 @@ public class Main {
     }
     
     /**
-     * A static method for randomly choose a villager who will say hi to the user
+     * A static method for randomly choose a villager who will 
+     * say hi to the user
      * In this case, user has 50% chance for the idea that if the user want
      * to steal the item from those kind people
      */
@@ -180,8 +181,8 @@ public class Main {
         newVillager.speak();
         System.out.print("says "+newVillager.getName()+". ");
         System.out.println();
-        newVillager.gainItem(new Item("Someone's stuff", "It is not belong to you"
-                                ,1));
+        newVillager.gainItem(new Item("Someone's stuff", 
+                "It is not belong to you",1));
         
         //Stealing thing from the villager
         int chance = ran.nextInt(2);
@@ -214,8 +215,7 @@ public class Main {
      * @return Boolean, true or false if the user success or fail
      */
     public static boolean stealItem(GameCharacter g, Item i){
-        Random ran = new Random();
-        
+        Random ran = new Random();        
         
         TownCharacter t = new TownCharacter("Nobody");
         if(g instanceof TownCharacter){
@@ -353,11 +353,13 @@ public class Main {
                             +"life: "+enemyLife);
                     }
                     else{
-                        System.out.println(e.getName()+" try to defense... fail!");
+                        System.out.println(e.getName()+
+                                " try to defense... fail!");
                         damage = p.getAttackPower();
                         damage = damageCount(damage);
                         
-                        System.out.println(e.getName()+" got "+damage+" damage.");
+                        System.out.println(e.getName()+
+                                " got "+damage+" damage.");
                         enemyLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -369,11 +371,13 @@ public class Main {
                     System.out.println(e.getName()+" fights back!");
                     defChance = ran.nextInt(3);
                     if(defChance==0||defChance==1){
-                        System.out.println(p.getName()+" try to defense... it works!");
+                        System.out.println(p.getName()+
+                                " try to defense... it works!");
                         damage = e.ATTACKPOWER-(p.getDefensePower()*0.5);
                         damage = damageCount(damage);
                         
-                        System.out.println(p.getName()+" got "+damage+" damage.");
+                        System.out.println(p.getName()+
+                                " got "+damage+" damage.");
                         myLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -382,11 +386,13 @@ public class Main {
                             +"life: "+enemyLife);
                     }
                     else{
-                        System.out.println(p.getName()+" try to defense... fail!");
+                        System.out.println(p.getName()+
+                                " try to defense... fail!");
                         damage = p.getAttackPower();
                         damage = damageCount(damage);
                         
-                        System.out.println(p.getName()+" got "+damage+" damage.");
+                        System.out.println(p.getName()+
+                                " got "+damage+" damage.");
                         myLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -401,14 +407,17 @@ public class Main {
                 }
                 else
                 {
-                    System.out.println(e.getName()+" is faster, so you are attacked!");
+                    System.out.println(e.getName()+
+                            " is faster, so you are attacked!");
                     defChance = ran.nextInt(3);
                     if(defChance==0||defChance==1){
-                        System.out.println(p.getName()+" try to defense... it works!");
+                        System.out.println(p.getName()+
+                                " try to defense... it works!");
                         damage = e.ATTACKPOWER-(p.getDefensePower()*0.5);
                         damage = damageCount(damage);
                         
-                        System.out.println(p.getName()+" got "+damage+" damage.");
+                        System.out.println(p.getName()+
+                                " got "+damage+" damage.");
                         myLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -417,11 +426,13 @@ public class Main {
                             +"life: "+enemyLife);
                     }
                     else{
-                        System.out.println(p.getName()+" try to defense... fail!");
+                        System.out.println(p.getName()+
+                                " try to defense... fail!");
                         damage = p.getAttackPower();
                         damage = damageCount(damage);
                         
-                        System.out.println(p.getName()+" got "+damage+" damage.");
+                        System.out.println(p.getName()+
+                                " got "+damage+" damage.");
                         myLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -433,11 +444,13 @@ public class Main {
                     System.out.println(p.getName()+" fights back!");
                     defChance = ran.nextInt(3);
                     if(defChance==0){
-                        System.out.println(e.getName()+" try to defense... it works!");
+                        System.out.println(e.getName()+
+                                " try to defense... it works!");
                         damage = p.getAttackPower()-((e.DEFENSEPOWER)*0.5);
                         damage = damageCount(damage);
                         
-                        System.out.println(e.getName()+" got "+damage+" damage.");
+                        System.out.println(e.getName()+
+                                " got "+damage+" damage.");
                         enemyLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -446,11 +459,13 @@ public class Main {
                             +"life: "+enemyLife);
                     }
                     else{
-                        System.out.println(e.getName()+" try to defense... fail!");
+                        System.out.println(e.getName()+
+                                " try to defense... fail!");
                         damage = p.getAttackPower();
                         damage = damageCount(damage);
                         
-                        System.out.println(e.getName()+" got "+damage+" damage.");
+                        System.out.println(e.getName()+
+                                " got "+damage+" damage.");
                         enemyLife-=damage;
                         
                         if(myLife<0) myLife=1;
@@ -655,7 +670,8 @@ public class Main {
             +"---------------------------------------------------");
         do{
             System.out.println("What do you want to do now?");
-            System.out.println("1. Shopping.(Enter 1)\n2. Check my info. (Enter 2)"
+            System.out.println("1. Shopping.(Enter 1)"
+                    + "\n2. Check my info. (Enter 2)"
                 +"\n3. Start adventures now.(Enter 3)\n4. Submit my money. "
                 +"(Enter 4)\n5. Leave this town(Enter 5) > ");
             int choice = jec.checkIntOneToFive(input);
