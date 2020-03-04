@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prog24178.assignment2;
+package prog24178.java2;
 
 /**
  * Creates a non-playable enemy character in the game

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prog24178.assignment2;
+package prog24178.java2;
 
 /**
  * Test the GameCharacter Class
