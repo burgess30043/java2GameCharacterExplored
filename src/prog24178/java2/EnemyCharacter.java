@@ -7,7 +7,7 @@ package prog24178.java2;
 
 /**
  * Creates a non-playable enemy character in the game
- * @author Khang Do
+ * @author Khang Do 
  */
 public class EnemyCharacter extends NonPlayableGameCharacter 
         implements BattleStats{
